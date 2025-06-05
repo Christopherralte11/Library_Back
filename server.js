@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import helmet from "helmet";
+import compression from "compression";
 
 // Import routes
 import { bookManagementRouter } from "./Routes/BookManagement.js";
@@ -15,6 +17,8 @@ const apiBaseUrl = process.env.API_BASE_URL || "http://localhost:3000";
 
 // Middleware
 app.use(cors());
+app.use(helmet()); // Adds security headers
+app.use(compression()); // Compresses responses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
